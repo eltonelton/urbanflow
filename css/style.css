@@ -633,3 +633,28 @@ li {
     transition-duration: 0.01ms !important;
   }
 }
+.navbar-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 9px;
+}
+
+.theme-toggle {
+  width: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  font-size: 17px;
+}
+
+.logout-button {
+  min-height: 44px;
+  padding: 10px 16px;
+}
+
+@media (max-width: 760px) {
+  .navbar-actions {
+    justify-content: center;
+  }
+}
