@@ -519,3 +519,12 @@ a{
 
     display:inline-block;
 }
+ul{
+
+    padding-left:20px;
+}
+
+li{
+
+    margin-bottom:10px;
+}
