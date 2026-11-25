@@ -1,69 +1,66 @@
-const CACHE_NAME =
-"urbanflow-v1";
+"use strict";
+
+const CACHE_NAME = "urbanflow-v4";
 
 const urlsToCache = [
-
-"/",
-
-"/index.html",
-
-"/onibus.html",
-
-"/detalhes.html",
-
-"/mapa.html",
-
-"/sobre.html",
-
-"/privacy.html",
-
-"/terms.html",
-
-"/css/style.css"
-
+  "./",
+  "./index.html",
+  "./login.html",
+  "./onibus.html",
+  "./detalhes.html",
+  "./mapa.html",
+  "./sobre.html",
+  "./privacy.html",
+  "./terms.html",
+  "./404.html",
+  "./css/style.css",
+  "./js/app.js",
+  "./js/auth.js",
+  "./js/theme.js",
+  "./js/search.js",
+  "./js/detalhes.js",
+  "./js/mapa.js",
+  "./js/pwa.js",
+  "./data/linhas.json",
+  "./manifest.json"
 ];
 
-self.addEventListener(
-"install",
-event => {
-
-    event.waitUntil(
-
-        caches.open(
-        CACHE_NAME
-        )
-
-        .then(cache => {
-
-            return cache.addAll(
-            urlsToCache
-            );
-
-        })
-
-    );
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
+  );
+  self.skipWaiting();
 });
 
-self.addEventListener(
-"fetch",
-event => {
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) =>
+      Promise.all(
+        cacheNames
+          .filter((cacheName) => cacheName !== CACHE_NAME)
+          .map((cacheName) => caches.delete(cacheName))
+      )
+    )
+  );
+  self.clients.claim();
+});
 
-    event.respondWith(
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") {
+    return;
+  }
 
-        caches.match(
-        event.request
-        )
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
 
-        .then(response => {
-
-            return (
-            response ||
-            fetch(
-            event.request
-            )
-            );
-
-        })
-
-    );
+      return fetch(event.request).catch(() => {
+        if (event.request.mode === "navigate") {
+          return caches.match("./404.html");
+        }
+      });
+    })
+  );
 });
