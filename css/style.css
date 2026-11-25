@@ -505,3 +505,17 @@ a{
         width:90%;
     }
 }
+.bus-card h3{
+
+    margin-bottom:10px;
+}
+
+.bus-card p{
+
+    margin-bottom:5px;
+}
+
+.bus-card .button{
+
+    display:inline-block;
+}
