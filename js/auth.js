@@ -1,96 +1,69 @@
-const cookieBanner =
-document.getElementById(
-"cookieBanner"
-);
+"use strict";
 
-const cookieAccepted =
-localStorage.getItem(
-"cookieAccepted"
-);
+const form = document.getElementById("loginForm");
+const nameInput = document.getElementById("nome");
+const modal = document.getElementById("termsModal");
+const acceptCheckbox = document.getElementById("acceptTerms");
+const confirmButton = document.getElementById("confirmTerms");
+const cancelButton = document.getElementById("cancelTerms");
 
-if(
-cookieBanner &&
-!cookieAccepted
-){
+let pendingName = "";
 
-    cookieBanner.style.display =
-    "block";
+function openTerms() {
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  acceptCheckbox.focus();
 }
 
-const acceptBtn =
-document.getElementById(
-"acceptCookies"
-);
-
-if(acceptBtn){
-
-    acceptBtn.addEventListener(
-    "click",
-    () => {
-
-        localStorage.setItem(
-        "cookieAccepted",
-        "true"
-        );
-
-        cookieBanner.style.display =
-        "none";
-    });
+function closeTerms() {
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  acceptCheckbox.checked = false;
+  confirmButton.disabled = true;
+  nameInput.focus();
 }
 
-/* =========================
-   LOGIN
-   ========================= */
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-const form =
-document.getElementById(
-"loginForm"
-);
+  const name = nameInput.value.trim();
 
-if(form){
+  if (name.length < 2) {
+    nameInput.setCustomValidity("Digite um nome com pelo menos 2 caracteres.");
+    nameInput.reportValidity();
+    nameInput.setCustomValidity("");
+    return;
+  }
 
-    form.addEventListener(
-    "submit",
-    function(e){
+  pendingName = name;
+  openTerms();
+});
 
-        e.preventDefault();
+acceptCheckbox.addEventListener("change", () => {
+  confirmButton.disabled = !acceptCheckbox.checked;
+});
 
-        const nome =
-        document
-        .getElementById("nome")
-        .value
-        .trim();
+cancelButton.addEventListener("click", closeTerms);
 
-        if(nome.length < 2){
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && modal.classList.contains("is-open")) {
+    closeTerms();
+  }
+});
 
-            alert(
-            "Digite um nome válido."
-            );
+confirmButton.addEventListener("click", () => {
+  if (!acceptCheckbox.checked || !pendingName) {
+    return;
+  }
 
-            return;
-        }
-
-        localStorage.setItem(
-        "urbanflow_user",
-        nome
-        );
-
-        window.location.href =
-        "index.html";
-    });
-}
-const usuario =
-localStorage.getItem(
-"urbanflow_user"
-);
-
-if(
-usuario &&
-window.location.pathname
-.includes("login.html")
-){
-
-    console.log(
-    "Usuário encontrado."
-    );
-}
+  try {
+    localStorage.setItem("urbanflow_user", pendingName);
+    localStorage.setItem("urbanflow_terms_accepted", "true");
+    localStorage.setItem("urbanflow_terms_accepted_at", new Date().toISOString());
+    window.location.href = "index.html";
+  } catch (error) {
+    alert("Não foi possível salvar sua preferência neste navegador. Verifique as configurações de armazenamento.");
+  }
+});
