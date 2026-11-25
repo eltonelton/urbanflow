@@ -1,0 +1,34 @@
+[
+  {
+    "id": 101,
+    "nome": "Ônibus 101",
+    "rota": "Centro → Terminal",
+    "horario": "08:10",
+    "vagas": 25,
+    "status": "operacao"
+  },
+  {
+    "id": 102,
+    "nome": "Ônibus 102",
+    "rota": "Centro → Hospital",
+    "horario": "08:15",
+    "vagas": 9,
+    "status": "atencao"
+  },
+  {
+    "id": 103,
+    "nome": "Ônibus 103",
+    "rota": "Centro → Universidade",
+    "horario": "08:20",
+    "vagas": 0,
+    "status": "lotado"
+  },
+  {
+    "id": 104,
+    "nome": "Ônibus 104",
+    "rota": "Centro → Bairro Sul",
+    "horario": "08:30",
+    "vagas": 17,
+    "status": "operacao"
+  }
+]
