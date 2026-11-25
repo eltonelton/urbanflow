@@ -1,95 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Detalhes da Linha | UrbanFlow</title>
-
-<link
-rel="stylesheet"
-href="css/style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes da Linha | UrbanFlow</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
+  <div class="layout">
+    <header class="sidebar">
+      <a class="logo" href="index.html">UrbanFlow</a>
 
-<div class="layout">
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="onibus.html" aria-current="page">Ônibus</a>
+        <a href="mapa.html">Mapa</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
 
-    <aside class="sidebar">
-
-        <div class="logo">
-            UrbanFlow
-        </div>
-
-        <nav class="nav-links">
-
-            <a href="index.html">
-                Início
-            </a>
-
-            <a href="onibus.html">
-                Ônibus
-            </a>
-
-            <a href="mapa.html">
-                Mapa
-            </a>
-
-            <a href="sobre.html">
-                Sobre
-            </a>
-
-        </nav>
-
-    </aside>
+      <button id="themeToggle" class="button btn-secondary" type="button" aria-label="Alternar tema">
+        <span aria-hidden="true">◐</span>
+      </button>
+    </header>
 
     <main class="content">
+      <section class="hero">
+        <p class="eyebrow">Informações da linha</p>
+        <h1>Detalhes da linha</h1>
+        <p>Confira a rota, o horário e a disponibilidade atual.</p>
+      </section>
 
-        <section class="hero">
+      <div id="detalhesContainer">
+        <div class="card">Carregando informações...</div>
+      </div>
 
-            <h1>
-
-                Detalhes da Linha
-
-            </h1>
-
-            <p>
-
-                Informações completas
-                sobre a rota selecionada.
-
-            </p>
-
-        </section>
-
-        <div id="detalhesContainer">
-
-            <div class="card">
-
-                Carregando...
-
-            </div>
-
-        </div>
-
-        <div class="footer">
-
-            UrbanFlow • Sistema de Mobilidade
-
-        </div>
-
+      <footer class="footer">
+        <p>© 2026 UrbanFlow. Todos os direitos reservados.</p>
+        <nav class="footer-links" aria-label="Links institucionais">
+          <a href="privacy.html">Política de Privacidade</a>
+          <a href="terms.html">Termos de Uso</a>
+          <a href="sobre.html">Contato</a>
+        </nav>
+        <p>Desenvolvido para fins demonstrativos.</p>
+      </footer>
     </main>
+  </div>
 
-</div>
-
-<script src="js/detalhes.js"></script>
-
+  <script src="js/app.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/detalhes.js"></script>
+  <script src="js/pwa.js"></script>
 </body>
-
 </html>
