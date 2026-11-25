@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Mapa | UrbanFlow</title>
+
+<link
+rel="stylesheet"
+href="css/style.css">
+
+<link
+rel="stylesheet"
+href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            UrbanFlow
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Início
+            </a>
+
+            <a href="onibus.html">
+                Ônibus
+            </a>
+
+            <a href="mapa.html">
+                Mapa
+            </a>
+
+            <a href="sobre.html">
+                Sobre
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <main class="content">
+
+        <section class="hero">
+
+            <h1>Mapa em Tempo Real</h1>
+
+            <p>
+                Visualize rotas,
+                pontos de ônibus
+                e veículos simulados.
+            </p>
+
+        </section>
+
+        <section class="bento-grid">
+
+            <div class="card">
+
+                <h3>
+                    Linhas Ativas
+                </h3>
+
+                <div class="big-number">
+                    12
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h3>
+                    Ônibus Monitorados
+                </h3>
+
+                <div class="big-number">
+                    58
+                </div>
+
+            </div>
+
+        </section>
+
+        <br>
+
+        <div id="map"></div>
+
+        <div class="footer">
+
+            UrbanFlow • Projeto Conceitual
+
+        </div>
+
+    </main>
+
+</div>
+
+<script
+src="https://unpkg.com/leaflet/dist/leaflet.js">
+</script>
+
+<script src="js/mapa.js"></script>
+
+</body>
+</html>
