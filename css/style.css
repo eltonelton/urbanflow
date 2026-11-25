@@ -10,7 +10,6 @@
   --border: #e8e8e2;
   --primary: #c9f36a;
   --primary-hover: #b8e452;
-  --ink: #121212;
   --success-bg: #e8f7e9;
   --success-text: #246b32;
   --warning-bg: #fff3d6;
@@ -30,7 +29,6 @@ body.dark {
   --text: #f4f4ef;
   --text-muted: #b0b0a7;
   --border: #393a32;
-  --ink: #f4f4ef;
   --success-bg: #1d3824;
   --success-text: #a7e6b2;
   --warning-bg: #3a3018;
@@ -85,31 +83,31 @@ input {
   min-height: 100vh;
 }
 
-/* Navegação horizontal */
+/* Navbar compartilhada por todas as páginas */
 .sidebar {
   position: sticky;
   z-index: 20;
   top: 0;
-  display: flex;
+  display: grid;
   width: 100%;
   min-height: 76px;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
-  gap: 28px;
-  padding: 14px max(28px, calc((100vw - 1260px) / 2));
+  gap: 20px;
+  padding: 12px max(32px, calc((100vw - 1260px) / 2));
   border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
-  backdrop-filter: blur(16px);
+  background: var(--surface);
 }
 
 .logo {
-  flex: 0 0 auto;
+  justify-self: start;
   margin: 0;
   color: var(--text);
   font-family: "Manrope", sans-serif;
   font-size: 21px;
   font-weight: 800;
   letter-spacing: -0.8px;
+  white-space: nowrap;
 }
 
 .logo::before {
@@ -135,6 +133,7 @@ input {
   color: var(--text-muted);
   font-size: 14px;
   font-weight: 600;
+  white-space: nowrap;
   transition: background var(--transition), color var(--transition);
 }
 
@@ -142,6 +141,53 @@ input {
 .nav-links a[aria-current="page"] {
   background: var(--surface-soft);
   color: var(--text);
+}
+
+.navbar-actions {
+  display: flex;
+  justify-self: end;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle,
+.logout-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.theme-toggle {
+  width: 58px;
+  padding: 0;
+}
+
+.theme-toggle span {
+  color: #e8ad16;
+  font-size: 21px;
+  line-height: 1;
+}
+
+.logout-button {
+  padding: 0 17px;
+}
+
+.theme-toggle:hover,
+.logout-button:hover {
+  transform: translateY(-1px);
+  background: var(--surface-soft);
 }
 
 /* Área principal e títulos */
@@ -178,6 +224,15 @@ input {
   line-height: 1.75;
 }
 
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .content h2,
 .card h2 {
   font-family: "Manrope", sans-serif;
@@ -207,13 +262,20 @@ input {
 
 .card {
   padding: 25px;
-  transition: transform var(--transition), border-color var(--transition);
+  transition:
+    transform var(--transition),
+    border-color var(--transition);
 }
 
 .card:hover,
 .bus-card:hover {
   transform: translateY(-2px);
   border-color: #d3d3ca;
+}
+
+body.dark .card:hover,
+body.dark .bus-card:hover {
+  border-color: #55564b;
 }
 
 .card h3 {
@@ -253,6 +315,11 @@ input {
   color: #999991;
 }
 
+body.dark .search-box input::placeholder,
+body.dark .login-card input::placeholder {
+  color: #a3a398;
+}
+
 .search-box input:focus,
 .login-card input:focus {
   border-color: #9bbd50;
@@ -266,7 +333,9 @@ input {
   gap: 24px;
   margin: 14px 0;
   padding: 22px 24px;
-  transition: transform var(--transition), border-color var(--transition);
+  transition:
+    transform var(--transition),
+    border-color var(--transition);
 }
 
 .bus-card h3 {
@@ -303,7 +372,7 @@ input {
   color: var(--danger-text);
 }
 
-/* Botões */
+/* Botões gerais */
 .button,
 .login-card button,
 .btn {
@@ -319,7 +388,9 @@ input {
   color: #171a11;
   cursor: pointer;
   font-weight: 700;
-  transition: background var(--transition), transform var(--transition);
+  transition:
+    background var(--transition),
+    transform var(--transition);
 }
 
 .button:hover,
@@ -340,7 +411,8 @@ input {
 }
 
 .button:disabled,
-.login-card button:disabled {
+.login-card button:disabled,
+.btn:disabled {
   cursor: not-allowed;
   opacity: 0.5;
   transform: none;
@@ -356,7 +428,7 @@ input {
   box-shadow: var(--shadow);
 }
 
-/* Footer — usar o mesmo bloco HTML em todas as páginas */
+/* Footer */
 .footer {
   margin-top: 72px;
   padding: 26px 0 34px;
@@ -364,6 +436,10 @@ input {
   color: var(--text-muted);
   font-size: 13px;
   text-align: center;
+}
+
+.footer p {
+  margin: 8px 0 0;
 }
 
 .footer-links {
@@ -394,6 +470,13 @@ input {
     var(--bg);
 }
 
+body.dark.login-body {
+  background:
+    radial-gradient(ellipse at 12% 8%, #36321f 0, transparent 34%),
+    radial-gradient(ellipse at 90% 92%, #382723 0, transparent 38%),
+    var(--bg);
+}
+
 .login-card {
   width: min(100%, 460px);
   padding: clamp(28px, 6vw, 46px);
@@ -401,15 +484,6 @@ input {
   border-radius: 26px;
   background: var(--surface);
   box-shadow: 0 28px 90px rgba(24, 24, 18, 0.12);
-}
-
-.login-card .eyebrow {
-  margin: 0 0 12px;
-  color: var(--text-muted);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .login-card h1 {
@@ -545,7 +619,7 @@ input {
   min-width: 130px;
 }
 
-/* Páginas de termos, privacidade e erro */
+/* Termos, privacidade e conteúdo textual */
 .prose {
   max-width: 820px;
 }
@@ -557,6 +631,20 @@ input {
 .prose p,
 .prose li {
   color: var(--text-muted);
+}
+
+.prose a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose code {
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: var(--surface-soft);
+  color: var(--text);
+  font-family: monospace;
 }
 
 ul {
@@ -571,18 +659,24 @@ li {
 @media (max-width: 760px) {
   .sidebar {
     position: relative;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px 18px;
-    padding: 13px 16px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px 14px;
+    padding: 12px 16px;
   }
 
   .logo {
-    width: 100%;
-    text-align: center;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .navbar-actions {
+    grid-column: 2;
+    grid-row: 1;
   }
 
   .nav-links {
+    grid-column: 1 / -1;
+    grid-row: 2;
     flex-wrap: wrap;
     gap: 2px;
   }
@@ -616,12 +710,47 @@ li {
     min-height: 380px;
   }
 
+  .terms-check {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .modal-header,
+  .terms-scroll {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
   .modal-actions {
     flex-direction: column-reverse;
+    padding-right: 20px;
+    padding-left: 20px;
   }
 
   .modal-actions button {
     width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .sidebar {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .nav-links a {
+    padding-right: 8px;
+    padding-left: 8px;
+    font-size: 12px;
+  }
+
+  .theme-toggle {
+    width: 48px;
+  }
+
+  .logout-button {
+    padding-right: 12px;
+    padding-left: 12px;
   }
 }
 
@@ -631,30 +760,5 @@ li {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
-  }
-}
-.navbar-actions {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  gap: 9px;
-}
-
-.theme-toggle {
-  width: 44px;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0;
-  font-size: 17px;
-}
-
-.logout-button {
-  min-height: 44px;
-  padding: 10px 16px;
-}
-
-@media (max-width: 760px) {
-  .navbar-actions {
-    justify-content: center;
   }
 }
