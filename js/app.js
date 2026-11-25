@@ -1,14 +1,30 @@
 "use strict";
 
-const usuario = localStorage.getItem("urbanflow_user");
-const termsAccepted = localStorage.getItem("urbanflow_terms_accepted");
+const currentPath = window.location.pathname;
+const pageName = currentPath.split("/").pop() || "index.html";
 
-const onLoginPage = window.location.pathname.endsWith("login.html");
-const onPublicPage =
-  window.location.pathname.endsWith("terms.html") ||
-  window.location.pathname.endsWith("privacy.html");
+const publicPages = new Set([
+  "login.html",
+  "terms.html",
+  "privacy.html",
+  "404.html"
+]);
 
-if (!onLoginPage && !onPublicPage && (!usuario || termsAccepted !== "true")) {
+let usuario = null;
+let termosAceitos = null;
+
+try {
+  usuario = localStorage.getItem("urbanflow_user");
+  termosAceitos = localStorage.getItem("urbanflow_terms_accepted");
+} catch {
+  // Se o armazenamento estiver bloqueado, a proteção encaminha
+  // para o login, onde a pessoa poderá receber a mensagem adequada.
+}
+
+if (
+  !publicPages.has(pageName) &&
+  (!usuario || termosAceitos !== "true")
+) {
   window.location.replace("login.html");
 }
 
@@ -22,9 +38,12 @@ const logoutButton = document.getElementById("logoutBtn");
 
 if (logoutButton) {
   logoutButton.addEventListener("click", () => {
-    localStorage.removeItem("urbanflow_user");
-    localStorage.removeItem("urbanflow_terms_accepted");
-    localStorage.removeItem("urbanflow_terms_accepted_at");
-    window.location.replace("login.html");
+    try {
+      localStorage.removeItem("urbanflow_user");
+      localStorage.removeItem("urbanflow_terms_accepted");
+      localStorage.removeItem("urbanflow_terms_accepted_at");
+    } finally {
+      window.location.replace("login.html");
+    }
   });
 }
