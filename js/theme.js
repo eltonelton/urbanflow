@@ -1,44 +1,29 @@
-const themeBtn =
-document.getElementById(
-"themeToggle"
-);
+"use strict";
 
-const savedTheme =
-localStorage.getItem(
-"theme"
-);
+const themeButton = document.getElementById("themeToggle");
+const savedTheme = localStorage.getItem("urbanflow_theme");
 
-/* ====================
-   TEMA SALVO
-   ==================== */
-
-if(savedTheme === "dark"){
-
-    document.body.classList
-    .add("dark");
+if (savedTheme === "dark") {
+  document.body.classList.add("dark");
+  if (themeButton) {
+    themeButton.setAttribute("aria-label", "Ativar tema claro");
+  }
 }
 
-/* ====================
-   TROCAR TEMA
-   ==================== */
+if (themeButton) {
+  themeButton.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
 
-if(themeBtn){
+    const isDark = document.body.classList.contains("dark");
 
-    themeBtn.addEventListener(
-    "click",
-    () => {
+    localStorage.setItem(
+      "urbanflow_theme",
+      isDark ? "dark" : "light"
+    );
 
-        document.body.classList
-        .toggle("dark");
-
-        localStorage.setItem(
-        "theme",
-
-        document.body.classList
-        .contains("dark")
-
-        ? "dark"
-        : "light"
-        );
-    });
+    themeButton.setAttribute(
+      "aria-label",
+      isDark ? "Ativar tema claro" : "Ativar tema escuro"
+    );
+  });
 }
