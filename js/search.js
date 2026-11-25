@@ -1,150 +1,98 @@
-const container =
-document.getElementById(
-"busContainer"
-);
+"use strict";
 
-const searchInput =
-document.getElementById(
-"busSearch"
-);
+const container = document.getElementById("busContainer");
+const searchInput = document.getElementById("busSearch");
 
 let linhas = [];
 
-/* ====================
-   CARREGAR JSON
-   ==================== */
-
 fetch("data/linhas.json")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Não foi possível carregar as linhas.");
+    }
 
-.then(response =>
-response.json())
-
-.then(data => {
-
+    return response.json();
+  })
+  .then((data) => {
     linhas = data;
-
     renderLinhas(data);
+  })
+  .catch(() => {
+    container.innerHTML = `
+      <div class="card">
+        <h2>Linhas indisponíveis</h2>
+        <p>Não foi possível carregar os dados neste momento.</p>
+      </div>
+    `;
+  });
 
-});
+function getStatus(linha) {
+  if (linha.status === "atencao") {
+    return {
+      className: "status-warning",
+      text: "Poucas vagas"
+    };
+  }
 
-/* ====================
-   RENDER
-   ==================== */
+  if (linha.status === "lotado") {
+    return {
+      className: "status-danger",
+      text: "Lotado"
+    };
+  }
 
-function renderLinhas(lista){
-
-    container.innerHTML = "";
-
-    lista.forEach(linha => {
-
-        let statusClass =
-        "status-success";
-
-        let textoStatus =
-        "Em operação";
-
-        if(
-        linha.status ===
-        "atencao"
-        ){
-            statusClass =
-            "status-warning";
-
-            textoStatus =
-            "Poucas vagas";
-        }
-
-        if(
-        linha.status ===
-        "lotado"
-        ){
-            statusClass =
-            "status-danger";
-
-            textoStatus =
-            "Lotado";
-        }
-
-        container.innerHTML +=
-
-        `
-        <div class="bus-card">
-
-            <div>
-
-                <h3>
-                    ${linha.nome}
-                </h3>
-
-                <p>
-                    ${linha.rota}
-                </p>
-
-                <p>
-                    Horário:
-                    ${linha.horario}
-                </p>
-
-                <p>
-                    Vagas:
-                    ${linha.vagas}
-                </p>
-
-            </div>
-
-            <div>
-
-                <span
-                class="status ${statusClass}">
-                    ${textoStatus}
-                </span>
-
-                <br><br>
-
-                <a
-                class="button"
-                href="detalhes.html?id=${linha.id}">
-
-                    Ver Detalhes
-
-                </a>
-
-            </div>
-
-        </div>
-        `;
-    });
-
+  return {
+    className: "status-success",
+    text: "Em operação"
+  };
 }
 
-/* ====================
-   PESQUISA
-   ==================== */
+function renderLinhas(lista) {
+  container.innerHTML = "";
 
-searchInput.addEventListener(
-"keyup",
-e => {
+  if (lista.length === 0) {
+    container.innerHTML = `
+      <div class="card">
+        <h2>Nenhuma linha encontrada</h2>
+        <p>Tente pesquisar pelo número da linha ou por outro destino.</p>
+      </div>
+    `;
+    return;
+  }
 
-    const termo =
-    e.target.value
-    .toLowerCase();
+  lista.forEach((linha) => {
+    const status = getStatus(linha);
 
-    const resultado =
-    linhas.filter(item =>
+    container.innerHTML += `
+      <article class="bus-card">
+        <div>
+          <h3>${linha.nome}</h3>
+          <p>${linha.rota}</p>
+          <p>Horário: ${linha.horario}</p>
+          <p>Vagas: ${linha.vagas}</p>
+        </div>
 
-        item.nome
-        .toLowerCase()
-        .includes(termo)
+        <div>
+          <span class="status ${status.className}">
+            ${status.text}
+          </span>
+          <br><br>
+          <a class="button" href="detalhes.html?id=${linha.id}">
+            Ver detalhes
+          </a>
+        </div>
+      </article>
+    `;
+  });
+}
 
-        ||
+searchInput.addEventListener("input", (event) => {
+  const termo = event.target.value.trim().toLowerCase();
 
-        item.rota
-        .toLowerCase()
-        .includes(termo)
+  const resultado = linhas.filter((linha) =>
+    linha.nome.toLowerCase().includes(termo) ||
+    linha.rota.toLowerCase().includes(termo)
+  );
 
-    );
-
-    renderLinhas(
-    resultado
-    );
+  renderLinhas(resultado);
 });
