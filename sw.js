@@ -1,8 +1,8 @@
 "use strict";
 
-const CACHE_NAME = "urbanflow-v4";
+const CACHE_NAME = "urbanflow-v5";
 
-const urlsToCache = [
+const FILES_TO_CACHE = [
   "./",
   "./index.html",
   "./login.html",
@@ -27,40 +27,72 @@ const urlsToCache = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(FILES_TO_CACHE))
+      .then(() => self.skipWaiting())
   );
-  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) =>
-      Promise.all(
-        cacheNames
-          .filter((cacheName) => cacheName !== CACHE_NAME)
-          .map((cacheName) => caches.delete(cacheName))
+    caches.keys()
+      .then((cacheNames) =>
+        Promise.all(
+          cacheNames
+            .filter((cacheName) => cacheName !== CACHE_NAME)
+            .map((cacheName) => caches.delete(cacheName))
+        )
       )
-    )
+      .then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") {
+  const request = event.request;
+
+  if (request.method !== "GET") {
+    return;
+  }
+
+  const requestUrl = new URL(request.url);
+
+  // Não intercepta recursos de outros domínios, como Leaflet ou mapas.
+  if (requestUrl.origin !== self.location.origin) {
     return;
   }
 
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
+    fetch(request)
+      .then((response) => {
+        if (response.ok) {
+          const responseCopy = response.clone();
 
-      return fetch(event.request).catch(() => {
-        if (event.request.mode === "navigate") {
-          return caches.match("./404.html");
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, responseCopy);
+          });
         }
-      });
-    })
+
+        return response;
+      })
+      .catch(async () => {
+        const cachedResponse = await caches.match(request, {
+          ignoreSearch: true
+        });
+
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
+        if (request.mode === "navigate") {
+          const offlinePage = await caches.match("./404.html");
+          if (offlinePage) return offlinePage;
+        }
+
+        return new Response("Conteúdo indisponível offline.", {
+          status: 503,
+          statusText: "Service Unavailable",
+          headers: { "Content-Type": "text/plain; charset=utf-8" }
+        });
+      })
   );
 });
