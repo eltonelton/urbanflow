@@ -1,88 +1,140 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Termos de Uso</title>
-
-<link
-rel="stylesheet"
-href="css/style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termos de Uso | UrbanFlow</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
+  <div class="layout">
+    <header class="sidebar">
+      <a class="logo" href="index.html">UrbanFlow</a>
 
-<div class="content">
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="onibus.html">Ônibus</a>
+        <a href="mapa.html">Mapa</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
 
-    <section class="hero">
+      <button id="themeToggle" class="button btn-secondary" type="button" aria-label="Alternar tema">
+        <span aria-hidden="true">◐</span>
+      </button>
+    </header>
 
-        <h1>
+    <main class="content">
+      <section class="hero">
+        <p class="eyebrow">Última atualização: 25 de novembro de 2026</p>
+        <h1>Termos de Uso</h1>
+        <p>Conheça as condições aplicáveis ao uso demonstrativo do UrbanFlow.</p>
+      </section>
 
-            Termos de Uso
+      <section class="prose">
+        <article class="card">
+          <h2>1. Aceitação</h2>
+          <p>
+            Ao acessar o UrbanFlow, você declara que leu e concordou com estes
+            termos e com a <a href="privacy.html">Política de Privacidade</a>.
+          </p>
+        </article>
 
-        </h1>
+        <article class="card">
+          <h2>2. Natureza do projeto</h2>
+          <p>
+            O UrbanFlow é um projeto demonstrativo desenvolvido para fins
+            educacionais e de portfólio. Não é um serviço oficial de transporte
+            público nem representa uma empresa operacional.
+          </p>
+        </article>
 
-        <p>
+        <article class="card">
+          <h2>3. Informações de mobilidade</h2>
+          <p>
+            Horários, vagas, status das linhas e trajetos possuem caráter
+            ilustrativo e podem estar incompletos ou desatualizados. Antes de
+            viajar, confirme todas as informações em canais oficiais do operador.
+          </p>
+        </article>
 
-            Condições gerais de utilização.
+        <article class="card">
+          <h2>4. Uso permitido</h2>
+          <p>
+            Você pode usar o projeto para demonstração, estudo e navegação pessoal.
+            É proibido utilizá-lo para atividades ilegais, tentativas de invasão,
+            sobrecarga indevida ou fraude.
+          </p>
+        </article>
 
-        </p>
+        <article class="card">
+          <h2>5. Login demonstrativo</h2>
+          <p>
+            A entrada com nome não constitui autenticação. Nenhuma senha é criada
+            nem verificada. O nome, o aceite e o tema são armazenados localmente
+            no seu navegador.
+          </p>
+        </article>
 
-    </section>
+        <article class="card">
+          <h2>6. Serviços externos</h2>
+          <p>
+            Mapas e dados podem ser fornecidos por OpenStreetMap, Leaflet e outros
+            provedores. A disponibilidade e a precisão desses recursos são
+            responsabilidade de seus respectivos titulares.
+          </p>
+        </article>
 
-    <div class="card">
+        <article class="card">
+          <h2>7. Limitação de responsabilidade</h2>
+          <p>
+            Na extensão permitida pela legislação aplicável, o UrbanFlow é
+            fornecido “como está”, sem garantias de disponibilidade, precisão ou
+            adequação a uma finalidade. Os autores não serão responsáveis por
+            decisões tomadas exclusivamente com base nas informações ilustrativas.
+          </p>
+        </article>
 
-        <h2>
+        <article class="card">
+          <h2>8. Propriedade intelectual</h2>
+          <p>
+            Elementos originais do projeto são destinados à demonstração. Recursos
+            de terceiros continuam sujeitos às licenças e direitos de seus autores.
+          </p>
+        </article>
 
-            Uso Demonstrativo
+        <article class="card">
+          <h2>9. Alterações</h2>
+          <p>
+            Estes termos podem ser alterados à medida que o projeto evolui. A
+            versão publicada nesta página será considerada a versão vigente.
+          </p>
+        </article>
 
-        </h2>
+        <article class="card">
+          <h2>10. Contato</h2>
+          <p>
+            Dúvidas podem ser enviadas por meio do
+            <a href="https://github.com/eltonelton/urbanflow" target="_blank" rel="noopener noreferrer">
+              repositório oficial do UrbanFlow
+            </a>.
+          </p>
+        </article>
+      </section>
 
-        <br>
+      <footer class="footer">
+        <p>© 2026 UrbanFlow. Todos os direitos reservados.</p>
+        <nav class="footer-links" aria-label="Links institucionais">
+          <a href="privacy.html">Política de Privacidade</a>
+          <a href="terms.html">Termos de Uso</a>
+          <a href="sobre.html">Contato</a>
+        </nav>
+        <p>Desenvolvido para fins demonstrativos.</p>
+      </footer>
+    </main>
+  </div>
 
-        <p>
-
-            UrbanFlow é um projeto
-            demonstrativo desenvolvido
-            para fins educacionais,
-            acadêmicos e de portfólio.
-
-        </p>
-
-    </div>
-
-    <br>
-
-    <div class="card">
-
-        <h2>
-
-            Limitações
-
-        </h2>
-
-        <br>
-
-        <p>
-
-            Informações de horários,
-            vagas e rotas exibidas no
-            sistema possuem caráter
-            ilustrativo.
-
-        </p>
-
-    </div>
-
-</div>
-
+  <script src="js/app.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/pwa.js"></script>
 </body>
-
 </html>
