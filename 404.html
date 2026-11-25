@@ -1,74 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Página não encontrada</title>
-
-<link
-rel="stylesheet"
-href="css/style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página não encontrada | UrbanFlow</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
+  <div class="layout">
+    <header class="sidebar">
+      <a class="logo" href="index.html">UrbanFlow</a>
 
-<div class="content">
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="onibus.html">Ônibus</a>
+        <a href="mapa.html">Mapa</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
 
-    <section class="hero">
+      <button id="themeToggle" class="button btn-secondary" type="button" aria-label="Alternar tema">
+        <span aria-hidden="true">◐</span>
+      </button>
+    </header>
 
-        <h1>
+    <main class="content">
+      <section class="hero">
+        <p class="eyebrow">Erro 404</p>
+        <h1>Esta página não foi encontrada</h1>
+        <p>O endereço acessado não existe ou foi movido.</p>
+      </section>
 
-            Erro 404
-
-        </h1>
-
-        <p>
-
-            A página que você procura
-            não foi encontrada.
-
-        </p>
-
-    </section>
-
-    <div class="card">
-
-        <h2>
-
-            Opa...
-
-        </h2>
-
+      <article class="card">
+        <h2>Voltar ao UrbanFlow</h2>
+        <p>Continue navegando pela página inicial ou consulte uma linha disponível.</p>
         <br>
+        <a class="button" href="index.html">Ir para o início</a>
+      </article>
 
-        <p>
+      <footer class="footer">
+        <p>© 2026 UrbanFlow. Todos os direitos reservados.</p>
+        <nav class="footer-links" aria-label="Links institucionais">
+          <a href="privacy.html">Política de Privacidade</a>
+          <a href="terms.html">Termos de Uso</a>
+          <a href="sobre.html">Contato</a>
+        </nav>
+        <p>Desenvolvido para fins demonstrativos.</p>
+      </footer>
+    </main>
+  </div>
 
-            O endereço acessado não existe
-            ou foi movido.
-
-        </p>
-
-        <br>
-
-        <a
-        href="index.html"
-        class="button">
-
-            Voltar ao Início
-
-        </a>
-
-    </div>
-
-</div>
-
+  <script src="js/app.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/pwa.js"></script>
 </body>
-
 </html>
