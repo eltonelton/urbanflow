@@ -1,37 +1,23 @@
-const map = L.map("map").setView(
-[-20.846, -42.654],
-13
-);
+const rota = [
 
-L.tileLayer(
-'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+[-20.846,-42.654],
+
+[-20.850,-42.652],
+
+[-20.853,-42.650],
+
+[-20.855,-42.648]
+
+];
+
+const linha = L.polyline(
+rota,
 {
-    maxZoom:19,
-    attribution:
-    '&copy; OpenStreetMap'
+    color:"#2563eb",
+    weight:5
 }
 ).addTo(map);
 
-L.marker([
--20.846,
--42.654
-])
-
-.addTo(map)
-
-.bindPopup(
-'Ônibus 101'
-)
-
-.openPopup();
-
-L.marker([
--20.855,
--42.648
-])
-
-.addTo(map)
-
-.bindPopup(
-'Ônibus 102'
+map.fitBounds(
+linha.getBounds()
 );
