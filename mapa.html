@@ -1,133 +1,66 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Mapa | UrbanFlow</title>
-
-<link
-rel="stylesheet"
-href="css/style.css">
-
-<link
-rel="stylesheet"
-href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa | UrbanFlow</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 </head>
-
 <body>
+  <div class="layout">
+    <header class="sidebar">
+      <a class="logo" href="index.html">UrbanFlow</a>
 
-<div class="layout">
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="onibus.html">Ônibus</a>
+        <a href="mapa.html" aria-current="page">Mapa</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
 
-    <aside class="sidebar">
-
-        <div class="logo">
-
-            UrbanFlow
-
-        </div>
-
-        <nav class="nav-links">
-
-            <a href="index.html">
-                Início
-            </a>
-
-            <a href="onibus.html">
-                Ônibus
-            </a>
-
-            <a href="mapa.html">
-                Mapa
-            </a>
-
-            <a href="sobre.html">
-                Sobre
-            </a>
-
-        </nav>
-
-    </aside>
+      <button id="themeToggle" class="button btn-secondary" type="button" aria-label="Alternar tema">
+        <span aria-hidden="true">◐</span>
+      </button>
+    </header>
 
     <main class="content">
+      <section class="hero">
+        <p class="eyebrow">Mapa de rotas</p>
+        <h1>Monitoramento visual</h1>
+        <p>Acompanhe no mapa as linhas cadastradas no ambiente demonstrativo.</p>
+      </section>
 
-        <section class="hero">
+      <section class="bento-grid" aria-label="Resumo do mapa">
+        <article class="card">
+          <h3>Linhas ativas</h3>
+          <div class="big-number">104</div>
+        </article>
 
-            <h1>
+        <article class="card">
+          <h3>Ônibus monitorados</h3>
+          <div class="big-number">58</div>
+        </article>
+      </section>
 
-                Monitoramento de Rotas
+      <div id="map" aria-label="Mapa das linhas UrbanFlow"></div>
 
-            </h1>
-
-            <p>
-
-                Acompanhe visualmente
-                as linhas cadastradas no sistema.
-
-            </p>
-
-        </section>
-
-        <section class="bento-grid">
-
-            <div class="card">
-
-                <h3>
-
-                    Linhas Ativas
-
-                </h3>
-
-                <div class="big-number">
-
-                    104
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <h3>
-
-                    Ônibus Monitorados
-
-                </h3>
-
-                <div class="big-number">
-
-                    58
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <div id="map"></div>
-
-        <div class="footer">
-
-            UrbanFlow • OpenStreetMap
-
-        </div>
-
+      <footer class="footer">
+        <p>© 2026 UrbanFlow. Todos os direitos reservados.</p>
+        <nav class="footer-links" aria-label="Links institucionais">
+          <a href="privacy.html">Política de Privacidade</a>
+          <a href="terms.html">Termos de Uso</a>
+          <a href="sobre.html">Contato</a>
+        </nav>
+        <p>Desenvolvido para fins demonstrativos.</p>
+      </footer>
     </main>
+  </div>
 
-</div>
-
-<script
-src="https://unpkg.com/leaflet/dist/leaflet.js">
-</script>
-
-<script src="js/mapa.js"></script>
-
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/mapa.js"></script>
+  <script src="js/pwa.js"></script>
 </body>
-
 </html>
