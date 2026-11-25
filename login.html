@@ -1,118 +1,158 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Entrar | UrbanFlow</title>
-
-<meta
-name="description"
-content="Acesse o UrbanFlow e acompanhe linhas de ônibus e rotas urbanas.">
-
-<link
-rel="stylesheet"
-href="css/style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Acesse o UrbanFlow e consulte linhas e rotas urbanas.">
+  <title>Entrar | UrbanFlow</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="login-body">
-
-<div class="login-card">
-
+  <main class="login-card">
+    <p class="eyebrow">Mobilidade urbana, sem complicação</p>
     <h1>UrbanFlow</h1>
-
-    <p>
-        Seu trajeto mais simples.
-    </p>
+    <p>Consulte linhas, horários e rotas em um só lugar.</p>
 
     <form id="loginForm">
-
-        <input
-            type="text"
-            id="nome"
-            placeholder="Digite seu nome"
-            maxlength="30"
-            required
-            aria-label="Nome do usuário">
-
-        <button type="submit">
-
-            Entrar
-
-        </button>
-
+      <label for="nome">Como podemos chamar você?</label>
+      <input
+        type="text"
+        id="nome"
+        name="nome"
+        placeholder="Digite seu nome"
+        maxlength="30"
+        autocomplete="given-name"
+        required
+        aria-describedby="loginHelp">
+      <button type="submit">Continuar</button>
     </form>
 
-    <div
-    style="
-    margin-top:20px;
-    font-size:14px;
-    color:#666;">
+    <p class="login-note" id="loginHelp">
+      Este é um acesso demonstrativo. Não é necessário criar uma conta.
+    </p>
+  </main>
 
-        Ao continuar você concorda com nossos
+  <div
+    class="modal"
+    id="termsModal"
+    aria-hidden="true">
+    <section
+      class="modal-box"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="termsTitle"
+      aria-describedby="termsIntro">
+      <header class="modal-header">
+        <h2 id="termsTitle">Antes de continuar</h2>
+        <p id="termsIntro">Leia as condições de uso e indique se concorda.</p>
+      </header>
 
-        <a href="terms.html">
+      <div class="terms-scroll" tabindex="0">
+        <h3>1. Sobre o UrbanFlow</h3>
+        <p>
+          O UrbanFlow é um projeto demonstrativo de interface para consulta
+          de informações de mobilidade urbana. Não é um operador de transporte
+          público e não vende passagens nem presta serviço de transporte.
+        </p>
 
-            Termos
+        <h3>2. Uso das informações</h3>
+        <p>
+          Linhas, horários, disponibilidade de vagas, trajetos e demais dados
+          exibidos podem ser ilustrativos, incompletos ou desatualizados.
+          Não use essas informações como única fonte para planejar uma viagem.
+          Confirme itinerários e horários com os canais oficiais dos
+          operadores locais.
+        </p>
 
-        </a>
+        <h3>3. Uso permitido</h3>
+        <p>
+          Você pode utilizar o site para fins pessoais, informativos e de
+          demonstração. Você concorda em não tentar interromper o funcionamento
+          do site, acessar áreas não públicas, introduzir código malicioso ou
+          usar o serviço de forma ilícita.
+        </p>
 
-        e
+        <h3>4. Acesso demonstrativo e armazenamento</h3>
+        <p>
+          O acesso é simulado: o nome informado é guardado no armazenamento
+          local do navegador para personalizar a experiência. Este site não
+          implementa autenticação real, criação de conta ou verificação de
+          identidade. Você pode remover os dados salvos limpando os dados do
+          site no navegador.
+        </p>
 
-        <a href="privacy.html">
+        <h3>5. Mapas e serviços de terceiros</h3>
+        <p>
+          A visualização de mapas pode depender de serviços externos, como
+          OpenStreetMap e Leaflet. Esses serviços têm seus próprios termos,
+          disponibilidade e políticas. O UrbanFlow não controla serviços de
+          terceiros nem garante que estarão sempre disponíveis.
+        </p>
 
-            Política de Privacidade
+        <h3>6. Disponibilidade e limitações</h3>
+        <p>
+          O site é fornecido “como está” e pode ser alterado, interrompido ou
+          ficar indisponível sem aviso. Na medida permitida pela legislação
+          aplicável, não há garantia de exatidão, disponibilidade ou adequação
+          das informações a uma finalidade específica.
+        </p>
 
-        </a>
+        <h3>7. Propriedade intelectual</h3>
+        <p>
+          Os elementos originais do projeto pertencem aos respectivos autores.
+          Marcas, bibliotecas, dados cartográficos e recursos de terceiros
+          permanecem sujeitos às licenças e condições de seus titulares.
+        </p>
 
-    </div>
+        <h3>8. Privacidade</h3>
+        <p>
+          Consulte a <a href="privacy.html">Política de Privacidade</a> para
+          entender quais informações são armazenadas localmente e como o site
+          utiliza recursos externos.
+        </p>
 
-</div>
+        <h3>9. Alterações</h3>
+        <p>
+          Estas condições podem ser atualizadas quando o projeto mudar. A
+          versão disponível nesta página é a que se aplica ao uso atual do
+          site. A data da última atualização deve ser conferida na página de
+          <a href="terms.html">Termos de Uso</a>.
+        </p>
 
-<!-- Banner de cookies -->
+        <h3>10. Contato</h3>
+        <p>
+          Para dúvidas sobre o projeto, consulte o repositório
+          <a href="https://github.com/eltonelton/urbanflow" target="_blank" rel="noopener noreferrer">
+            UrbanFlow no GitHub
+          </a>.
+        </p>
 
-<div
-id="cookieBanner"
-style="
-position:fixed;
-bottom:20px;
-left:20px;
-right:20px;
-background:white;
-padding:15px;
-border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,.1);
-display:none;
-z-index:999;
-">
+        <p>
+          Este texto é informativo e foi escrito para este projeto
+          demonstrativo. Não constitui aconselhamento jurídico nem substitui
+          termos preparados para um serviço comercial real.
+        </p>
+      </div>
 
-    Este site utiliza armazenamento local
-    para salvar preferências do usuário.
+      <label class="terms-check" for="acceptTerms">
+        <input type="checkbox" id="acceptTerms">
+        <span>
+          Li e aceito os Termos de Uso e confirmo que entendi que este é um
+          projeto demonstrativo.
+        </span>
+      </label>
 
-    <button
-    id="acceptCookies"
-    style="
-    margin-left:10px;
-    padding:8px 15px;
-    border:none;
-    background:#2563eb;
-    color:white;
-    border-radius:10px;
-    cursor:pointer;
-    ">
-        Entendi
-    </button>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="cancelTerms">
+          Voltar
+        </button>
+        <button type="button" class="btn" id="confirmTerms" disabled>
+          Aceitar e entrar
+        </button>
+      </div>
+    </section>
+  </div>
 
-</div>
-
-<script src="js/auth.js"></script>
-
+  <script src="js/auth.js"></script>
 </body>
-
 </html>
