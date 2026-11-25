@@ -1,7 +1,6 @@
 "use strict";
 
-const currentPath = window.location.pathname;
-const pageName = currentPath.split("/").pop() || "index.html";
+const pageName = window.location.pathname.split("/").pop() || "index.html";
 
 const publicPages = new Set([
   "login.html",
@@ -10,28 +9,27 @@ const publicPages = new Set([
   "404.html"
 ]);
 
-let usuario = null;
-let termosAceitos = null;
+let userName = null;
+let termsAccepted = null;
 
 try {
-  usuario = localStorage.getItem("urbanflow_user");
-  termosAceitos = localStorage.getItem("urbanflow_terms_accepted");
+  userName = localStorage.getItem("urbanflow_user");
+  termsAccepted = localStorage.getItem("urbanflow_terms_accepted");
 } catch {
-  // Se o armazenamento estiver bloqueado, a proteção encaminha
-  // para o login, onde a pessoa poderá receber a mensagem adequada.
+  // A verificação abaixo encaminha para o login se não houver armazenamento.
 }
 
 if (
   !publicPages.has(pageName) &&
-  (!usuario || termosAceitos !== "true")
+  (!userName || termsAccepted !== "true")
 ) {
   window.location.replace("login.html");
 }
 
 const welcomeUser = document.getElementById("welcomeUser");
 
-if (welcomeUser && usuario) {
-  welcomeUser.textContent = `Olá, ${usuario}! Para onde vamos?`;
+if (welcomeUser && userName) {
+  welcomeUser.textContent = `Olá, ${userName}! Para onde vamos?`;
 }
 
 const logoutButton = document.getElementById("logoutBtn");
