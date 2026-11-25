@@ -4,7 +4,7 @@ const themeButton = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
 const themeStorageKey = "urbanflow_theme";
 
-function getSavedTheme() {
+function readSavedTheme() {
   try {
     return localStorage.getItem(themeStorageKey);
   } catch {
@@ -12,16 +12,7 @@ function getSavedTheme() {
   }
 }
 
-function saveTheme(theme) {
-  try {
-    localStorage.setItem(themeStorageKey, theme);
-  } catch {
-    // O tema ainda funciona na página atual mesmo se o navegador
-    // bloquear o armazenamento local.
-  }
-}
-
-function applyTheme(theme) {
+function updateTheme(theme) {
   const isDark = theme === "dark";
 
   document.body.classList.toggle("dark", isDark);
@@ -33,11 +24,12 @@ function applyTheme(theme) {
   }
 
   if (themeIcon) {
-    themeIcon.textContent = isDark ? "☀️" : "🌙";
+    themeIcon.textContent = isDark ? "☀" : "☾";
   }
 }
 
-applyTheme(getSavedTheme() === "dark" ? "dark" : "light");
+const initialTheme = readSavedTheme() === "dark" ? "dark" : "light";
+updateTheme(initialTheme);
 
 if (themeButton) {
   themeButton.addEventListener("click", () => {
@@ -45,7 +37,12 @@ if (themeButton) {
       ? "light"
       : "dark";
 
-    saveTheme(nextTheme);
-    applyTheme(nextTheme);
+    try {
+      localStorage.setItem(themeStorageKey, nextTheme);
+    } catch {
+      // A troca continua funcionando na página atual mesmo sem armazenamento.
+    }
+
+    updateTheme(nextTheme);
   });
 }
