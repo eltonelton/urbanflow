@@ -1,197 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>UrbanFlow</title>
-
-<meta
-name="description"
-content="Sistema de mobilidade urbana inteligente.">
-
-<link
-rel="stylesheet"
-href="css/style.css">
-
-<link
-rel="manifest"
-href="manifest.json">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Consulte linhas, horários e rotas de transporte urbano com o UrbanFlow.">
+  <title>Início | UrbanFlow</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
 </head>
-
 <body>
+  <div class="layout">
+    <header class="sidebar">
+      <a class="logo" href="index.html" aria-label="UrbanFlow — página inicial">
+        UrbanFlow
+      </a>
 
-<div class="layout">
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="index.html" aria-current="page">Início</a>
+        <a href="onibus.html">Ônibus</a>
+        <a href="mapa.html">Mapa</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
 
-    <aside class="sidebar">
-
-        <div class="logo">
-
-            UrbanFlow
-
-        </div>
-
-        <nav class="nav-links">
-
-            <a href="index.html">
-
-                Início
-
-            </a>
-
-            <a href="onibus.html">
-
-                Ônibus
-
-            </a>
-
-            <a href="mapa.html">
-
-                Mapa
-
-            </a>
-
-            <a href="sobre.html">
-
-                Sobre
-
-            </a>
-
-        </nav>
-
-        <br>
-
-        <button
-        id="themeToggle"
-        class="button">
-
-            Alternar Tema
-
-        </button>
-
-        <br>
-
-        <button
-        id="logoutBtn"
-        class="button">
-
-            Sair
-
-        </button>
-
-    </aside>
+      <button id="themeToggle" class="button btn-secondary" type="button" aria-label="Alternar tema">
+        <span aria-hidden="true">◐</span>
+      </button>
+    </header>
 
     <main class="content">
+      <section class="hero">
+        <p class="eyebrow">Sua cidade em movimento</p>
+        <h1 id="welcomeUser">Planeje sua viagem urbana</h1>
+        <p>
+          Consulte linhas, horários e rotas disponíveis em uma experiência
+          rápida, clara e fácil de usar.
+        </p>
+      </section>
 
-        <section class="hero">
+      <section class="bento-grid" aria-label="Resumo da mobilidade urbana">
+        <article class="card">
+          <h3>Linhas ativas</h3>
+          <div class="big-number">104</div>
+        </article>
 
-            <h1 id="welcomeUser">
+        <article class="card">
+          <h3>Ônibus em operação</h3>
+          <div class="big-number">58</div>
+        </article>
 
-                Bem-vindo
+        <article class="card">
+          <h3>Rotas monitoradas</h3>
+          <div class="big-number">27</div>
+        </article>
 
-            </h1>
+        <article class="card">
+          <h3>Taxa média de ocupação</h3>
+          <div class="big-number">73%</div>
+        </article>
+      </section>
 
-            <p>
+      <section class="card">
+        <h2>Comece uma consulta</h2>
+        <p>Escolha uma linha para conferir o trajeto e as informações disponíveis.</p>
+        <br>
+        <a class="button" href="onibus.html">Pesquisar linhas</a>
+      </section>
 
-                Consulte linhas,
-                horários e rotas
-                de forma rápida
-                e intuitiva.
-
-            </p>
-
-        </section>
-
-        <section class="bento-grid">
-
-            <div class="card">
-
-                <h3>
-
-                    Linhas Ativas
-
-                </h3>
-
-                <div class="big-number">
-
-                    104
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <h3>
-
-                    Ônibus em Operação
-
-                </h3>
-
-                <div class="big-number">
-
-                    58
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <h3>
-
-                    Rotas Monitoradas
-
-                </h3>
-
-                <div class="big-number">
-
-                    27
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <h3>
-
-                    Taxa Média de Ocupação
-
-                </h3>
-
-                <div class="big-number">
-
-                    73%
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <div class="footer">
-
-            UrbanFlow • Projeto UX/UI
-
-        </div>
-
+      <footer class="footer">
+        <p>© 2026 UrbanFlow. Todos os direitos reservados.</p>
+        <nav class="footer-links" aria-label="Links institucionais">
+          <a href="privacy.html">Política de Privacidade</a>
+          <a href="terms.html">Termos de Uso</a>
+          <a href="sobre.html">Contato</a>
+        </nav>
+        <p>Desenvolvido para fins demonstrativos.</p>
+      </footer>
     </main>
+  </div>
 
-</div>
-
-<script src="js/app.js"></script>
-
-<script src="js/theme.js"></script>
-
-<script src="js/pwa.js"></script>
-
+  <script src="js/app.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/pwa.js"></script>
 </body>
-
 </html>
