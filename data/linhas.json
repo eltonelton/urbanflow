@@ -5,7 +5,9 @@
     "rota": "Centro → Terminal",
     "horario": "08:10",
     "vagas": 25,
-    "status": "operacao"
+    "status": "operacao",
+    "lat": -20.846,
+    "lng": -42.654
   },
   {
     "id": 102,
@@ -13,7 +15,9 @@
     "rota": "Centro → Hospital",
     "horario": "08:15",
     "vagas": 9,
-    "status": "atencao"
+    "status": "atencao",
+    "lat": -20.855,
+    "lng": -42.648
   },
   {
     "id": 103,
@@ -21,7 +25,9 @@
     "rota": "Centro → Universidade",
     "horario": "08:20",
     "vagas": 0,
-    "status": "lotado"
+    "status": "lotado",
+    "lat": -20.860,
+    "lng": -42.642
   },
   {
     "id": 104,
@@ -29,6 +35,8 @@
     "rota": "Centro → Bairro Sul",
     "horario": "08:30",
     "vagas": 17,
-    "status": "operacao"
+    "status": "operacao",
+    "lat": -20.865,
+    "lng": -42.638
   }
 ]
