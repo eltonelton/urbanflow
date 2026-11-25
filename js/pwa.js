@@ -1,32 +1,14 @@
-if(
-"serviceWorker"
-in navigator
-){
+"use strict";
 
-    window.addEventListener(
-    "load",
-    () => {
-
-        navigator
-        .serviceWorker
-        .register("sw.js")
-
-        .then(() => {
-
-            console.log(
-            "Service Worker registrado."
-            );
-
-        })
-
-        .catch(error => {
-
-            console.error(
-            error
-            );
-
-        });
-
-    });
-
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("sw.js")
+      .then((registration) => {
+        console.log("Service Worker registrado:", registration.scope);
+      })
+      .catch((error) => {
+        console.error("Falha ao registrar o Service Worker:", error);
+      });
+  });
 }
