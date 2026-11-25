@@ -1,58 +1,30 @@
-const usuario =
-localStorage.getItem(
-"urbanflow_user"
-);
+"use strict";
 
-/* ====================
-   PROTEÇÃO
-   ==================== */
+const usuario = localStorage.getItem("urbanflow_user");
+const termsAccepted = localStorage.getItem("urbanflow_terms_accepted");
 
-if(
-!usuario &&
-!window.location.pathname
-.includes("login.html")
-){
+const onLoginPage = window.location.pathname.endsWith("login.html");
+const onPublicPage =
+  window.location.pathname.endsWith("terms.html") ||
+  window.location.pathname.endsWith("privacy.html");
 
-    window.location.href =
-    "login.html";
+if (!onLoginPage && !onPublicPage && (!usuario || termsAccepted !== "true")) {
+  window.location.replace("login.html");
 }
 
-/* ====================
-   SAUDAÇÃO
-   ==================== */
+const welcomeUser = document.getElementById("welcomeUser");
 
-const welcomeUser =
-document.getElementById(
-"welcomeUser"
-);
-
-if(welcomeUser){
-
-    welcomeUser.innerHTML =
-
-    `Olá, ${usuario || "Usuário"}!`;
+if (welcomeUser && usuario) {
+  welcomeUser.textContent = `Olá, ${usuario}! Para onde vamos?`;
 }
 
-/* ====================
-   LOGOUT
-   ==================== */
+const logoutButton = document.getElementById("logoutBtn");
 
-const logoutBtn =
-document.getElementById(
-"logoutBtn"
-);
-
-if(logoutBtn){
-
-    logoutBtn.addEventListener(
-    "click",
-    () => {
-
-        localStorage.removeItem(
-        "urbanflow_user"
-        );
-
-        window.location.href =
-        "login.html";
-    });
+if (logoutButton) {
+  logoutButton.addEventListener("click", () => {
+    localStorage.removeItem("urbanflow_user");
+    localStorage.removeItem("urbanflow_terms_accepted");
+    localStorage.removeItem("urbanflow_terms_accepted_at");
+    window.location.replace("login.html");
+  });
 }
